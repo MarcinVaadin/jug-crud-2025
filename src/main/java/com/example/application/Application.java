@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Bean;
 import java.time.Clock;
 
 @SpringBootApplication
-@Theme("default")
+@Theme("default") // Theme of application located in src/main/frontend/themes
 public class Application implements AppShellConfigurator {
 
     @Bean
