@@ -15,7 +15,7 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.EmailField;
 import com.vaadin.flow.component.textfield.IntegerField;
 import com.vaadin.flow.component.textfield.TextField;
-import com.vaadin.flow.data.binder.Binder;
+import com.vaadin.flow.data.binder.BeanValidationBinder;
 import com.vaadin.flow.data.binder.ValidationException;
 import com.vaadin.flow.data.provider.ConfigurableFilterDataProvider;
 import com.vaadin.flow.data.value.ValueChangeMode;
@@ -62,9 +62,18 @@ public class PersonListView extends VerticalLayout {
         add(grid);
 
         // Binder binds form with model
-        var binder = new Binder<>(Person.class);
+        // Use BeanValidationBinder to use entity annotations for validation
+        var binder = new BeanValidationBinder<>(Person.class);
         // Use current view fields (by name matching) as form fields
-        binder.bindInstanceFields(this);
+        // binder.bindInstanceFields(this);
+
+        // Bind fields explicitly to setup custom validation
+        binder.bind(firstName, "firstName");
+        binder.bind(lastName, "lastName");
+        binder.bind(age, "age");
+        // Bind with custom validation
+        binder.forField(email).withValidator(email -> email.endsWith("@gmail.com"), "only gmail.com is allowed")
+                .bind("email");
 
         // Add selection listener that will update binder bean
         grid.addSelectionListener(event -> {
