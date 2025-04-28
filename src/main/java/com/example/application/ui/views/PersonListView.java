@@ -5,7 +5,9 @@ import com.example.application.data.PersonDataProvider;
 import com.example.application.data.PersonService;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.grid.GridVariant;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.icon.Icon;
@@ -59,6 +61,10 @@ public class PersonListView extends VerticalLayout {
         grid.setDataProvider(configurableFilterDataProvider);
         // Set columns explicitly to have desired order
         grid.setColumns("firstName", "lastName", "age", "email");
+
+        // Apply theme variant to have striped rows
+        grid.addThemeVariants(GridVariant.LUMO_ROW_STRIPES);
+
         add(grid);
 
         // Binder binds form with model
@@ -101,6 +107,11 @@ public class PersonListView extends VerticalLayout {
                 throw new RuntimeException(ex);
             }
         });
+
+        // Apply theme variant to have primary button
+        save.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+        // Use component API to adjust look and feel
+        save.setWidthFull();
 
         add(createDetails());
 
