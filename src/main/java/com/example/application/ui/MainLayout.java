@@ -1,8 +1,10 @@
 package com.example.application.ui;
 
+import com.example.application.security.SecurityService;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
+import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.icon.Icon;
@@ -10,8 +12,10 @@ import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.sidenav.SideNav;
 import com.vaadin.flow.component.sidenav.SideNavItem;
 import com.vaadin.flow.router.Layout;
+import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.flow.server.menu.MenuConfiguration;
 import com.vaadin.flow.server.menu.MenuEntry;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import static com.vaadin.flow.theme.lumo.LumoUtility.AlignItems;
 import static com.vaadin.flow.theme.lumo.LumoUtility.Display;
@@ -31,13 +35,22 @@ import static com.vaadin.flow.theme.lumo.LumoUtility.Padding;
  * </p>
  */
 @Layout
+@AnonymousAllowed // layout should be accessible for everyone
 public class MainLayout extends AppLayout {
 
-    public MainLayout() {
+    public MainLayout(@Autowired SecurityService securityService) {
         addToDrawer(createSideNav());
 
         // DrawerToggle is a button component that opens and closes the drawer
         addToNavbar(new DrawerToggle(), createHeader());
+
+        // Add login / logout button
+        var authUser = securityService.getAuthenticatedUser();
+        if (authUser != null) {
+            addToDrawer(new Button("Logout " + authUser.getUsername(), ev -> securityService.logout()));
+        } else {
+            addToDrawer(new Button("Login", ev -> getUI().ifPresent(ui -> ui.navigate("login"))));
+        }
     }
 
     private Component createHeader() {
