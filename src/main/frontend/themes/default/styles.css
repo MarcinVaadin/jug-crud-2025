@@ -1,22 +1,16 @@
-/* Modify theme using CSS variables */
 html {
-    /* https://vaadin.com/docs/latest/components/button/styling */
-    --vaadin-button-text-color: red;
-    /* https://vaadin.com/docs/latest/components/text-field/styling */
-    --vaadin-input-field-label-color: green;
+    /* --vaadin-button-text-color: red; */
+    /* --vaadin-input-field-label-color: green; */
 }
 
-/* Use component specific selectors to pick part you want to style */
-/* https://vaadin.com/docs/latest/components/app-layout/styling */
 vaadin-app-layout::part(navbar) {
-    background-color: orange;
+    /* background-color: orange; */
 }
 
 vaadin-app-layout::part(drawer) {
-    border-right: 1px solid orange;
+    /* border-right: 1px solid orange; */
 }
 
-/* https://vaadin.com/docs/latest/components/side-nav/styling */
 vaadin-side-nav-item[current] {
-    background-color: lightgray;
+    /* background-color: lightgray; */
 }
