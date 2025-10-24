@@ -2,7 +2,6 @@ package com.example.application.person.ui;
 
 import com.example.application.person.data.Person;
 import com.example.application.person.data.PersonDataProvider;
-import com.example.application.person.data.PersonService;
 import com.example.application.person.ui.component.PersonForm;
 import com.example.application.person.ui.component.SearchField;
 import com.vaadin.flow.component.button.Button;
@@ -16,6 +15,7 @@ import com.vaadin.flow.data.provider.ConfigurableFilterDataProvider;
 import com.vaadin.flow.router.Menu;
 import com.vaadin.flow.router.Route;
 import jakarta.annotation.security.RolesAllowed;
+import org.springframework.data.repository.CrudRepository;
 
 @Route
 @Menu(title = "Person", icon = "vaadin:group")
@@ -23,7 +23,7 @@ import jakarta.annotation.security.RolesAllowed;
 public class PersonListView extends VerticalLayout {
 
     // Inject data provider
-    public PersonListView(PersonService personService, PersonDataProvider personDataProvider) {
+    public PersonListView(CrudRepository<Person, Long> personRepository, PersonDataProvider personDataProvider) {
 
         add(new H2("Person List"));
 
@@ -64,7 +64,7 @@ public class PersonListView extends VerticalLayout {
         saveButton.addClickListener(e -> {
             Person entity = grid.getSelectedItems().stream().findFirst().orElse(new Person());
             binder.writeBeanIfValid(entity);
-            personService.save(entity);
+            personRepository.save(entity);
             filteredDataProvider.refreshAll();
         });
 
@@ -72,7 +72,7 @@ public class PersonListView extends VerticalLayout {
         grid.addComponentColumn((Person person) -> {
             Button deleteButton = new Button(VaadinIcon.TRASH.create());
             deleteButton.addClickListener(e -> {
-                personService.delete(person);
+                personRepository.delete(person);
                 if (person.equals(binder.getBean())) {
                     binder.setBean(null);
                 }
