@@ -2,6 +2,7 @@ package com.example.application.base.ui.component;
 
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.Header;
+import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.dom.Style;
 
@@ -9,7 +10,8 @@ public class AppHeader extends Header {
 
     public AppHeader() {
         /// add application logo using VaadinIcon
-        add(VaadinIcon.VAADIN_H.create());
+        Icon icon = VaadinIcon.VAADIN_H.create();
+        add(icon);
 
         // add application name
         H1 title = new H1("Torun JUG Demo");
@@ -17,7 +19,7 @@ public class AppHeader extends Header {
         add(title);
 
         // navigate to main view on click
-        addClickListener(event -> event.getSource().getUI().ifPresent(ui -> ui.navigate("")));
+        icon.addClickListener(event -> event.getSource().getUI().ifPresent(ui -> ui.navigate("")));
 
         // apply nicer styles
         setWidthFull();
