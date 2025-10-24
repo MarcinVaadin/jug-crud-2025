@@ -1,4 +1,4 @@
-package com.example.application.data;
+package com.example.application.person.data;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

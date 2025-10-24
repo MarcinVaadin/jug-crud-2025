@@ -1,4 +1,4 @@
-package com.example.application.data;
+package com.example.application.person.data;
 
 import org.springframework.stereotype.Service;
 
@@ -19,6 +19,10 @@ public class PersonService {
 
     public Person save(Person person) {
         return personRepository.save(person);
+    }
+
+    public void delete(Person person) {
+        personRepository.delete(person);
     }
 
 }

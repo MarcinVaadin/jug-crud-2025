@@ -1,4 +1,4 @@
-package com.example.application.data;
+package com.example.application.person.data;
 
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
