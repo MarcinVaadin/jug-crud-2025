@@ -8,6 +8,10 @@ import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
+/**
+ * Person JPA Entity.
+ * Contains validation constraints that can be automatically applied by BeanValidationBinder
+ */
 @Entity
 public class Person {
 

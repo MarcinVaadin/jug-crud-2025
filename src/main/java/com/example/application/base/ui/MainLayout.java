@@ -1,29 +1,19 @@
 package com.example.application.base.ui;
 
-import com.example.application.base.ui.component.AppHeader;
-import com.example.application.base.ui.component.AppSideNav;
-import com.example.application.base.ui.component.LoginButton;
-import com.example.application.security.SecurityService;
 import com.vaadin.flow.component.applayout.AppLayout;
-import com.vaadin.flow.component.applayout.DrawerToggle;
-import com.vaadin.flow.router.Layout;
-import com.vaadin.flow.server.auth.AnonymousAllowed;
 
-@Layout
-@AnonymousAllowed
+// TODO: Make it default layout
+
+// TODO: Allow all users to access this layout, it will be used also by login view
 public class MainLayout extends AppLayout {
 
-    public MainLayout(SecurityService securityService) {
+    public MainLayout() { // TODO: Wire security service after enabling security for login / logout button
 
-        // add side nav to the drawer
-        addToDrawer(new AppSideNav());
+        // TODO: Add side nav to the drawer
 
-        // include drawer toggle and header in navbar
-        AppHeader appHeader = new AppHeader();
-        addToNavbar(new DrawerToggle(), appHeader);
+        // TODO: Add drawer toggle and header to the navbar
 
-        // add login / logout buttons
-        appHeader.add(new LoginButton(securityService));
+        // TODO: Add login / logout button to header after enabling security
     }
 
 }

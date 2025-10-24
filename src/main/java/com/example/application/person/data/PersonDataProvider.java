@@ -25,21 +25,18 @@ public class PersonDataProvider extends AbstractBackEndDataProvider<Person, Stri
     // Query<MODEL, FILTER> => Person model and String last name filter
     @Override
     protected Stream<Person> fetchFromBackEnd(Query<Person, String> query) {
-        if (query.getFilter().isPresent()) {
-            return personRepository.findByLastNameContainingIgnoreCase(query.getFilter().get(), toPageable(query))
-                    .stream();
-        }
-        return personRepository.findAll(toPageable(query)).stream();
+        // TODO: Implement find on repository with and without filter
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     protected int sizeInBackEnd(Query<Person, String> query) {
-        if (query.getFilter().isPresent()) {
-            return (int) personRepository.countByLastNameContainingIgnoreCase(query.getFilter().get());
-        }
-        return (int) personRepository.count();
+        // TODO: Implement count on repository with and without filter
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    // Vaadin Flow does not require Spring, so there are no Spring utilities by default.
+    // Converts Vaadin Query object to Spring Pageable including sorting, page size and page number.
     private Pageable toPageable(Query<Person, String> query) {
         List<Sort.Order> orders = new ArrayList<>();
         for (QuerySortOrder sortOrder : query.getSortOrders()) {

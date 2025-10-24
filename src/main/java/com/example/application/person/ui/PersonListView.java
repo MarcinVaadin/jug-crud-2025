@@ -1,90 +1,40 @@
 package com.example.application.person.ui;
 
-import com.example.application.person.data.Person;
 import com.example.application.person.data.PersonDataProvider;
 import com.example.application.person.data.PersonService;
-import com.example.application.person.ui.component.PersonForm;
-import com.example.application.person.ui.component.SearchField;
-import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.grid.Grid;
-import com.vaadin.flow.component.html.H2;
-import com.vaadin.flow.component.icon.VaadinIcon;
-import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.data.binder.BeanValidationBinder;
-import com.vaadin.flow.data.binder.Binder;
-import com.vaadin.flow.data.provider.ConfigurableFilterDataProvider;
-import com.vaadin.flow.router.Menu;
-import com.vaadin.flow.router.Route;
-import jakarta.annotation.security.RolesAllowed;
 
-@Route
-@Menu(title = "Person", icon = "vaadin:group")
-@RolesAllowed("ADMIN")
-public class PersonListView extends VerticalLayout {
+// TODO: register as view route
 
-    // Inject data provider
+// TODO: add to menu
+
+// TODO: setup view access to admin only
+
+public class PersonListView { // TODO: make component from class
+
+    // Autowired service and data provider
     public PersonListView(PersonService personService, PersonDataProvider personDataProvider) {
 
-        add(new H2("Person List"));
+        // TODO: set view title in h2
 
-        ConfigurableFilterDataProvider filteredDataProvider = personDataProvider.withConfigurableFilter();
+        // TODO: wrap data provider with configurable filter
 
-        // add search field
-        SearchField searchField = new SearchField();
-        searchField.addValueChangeListener(e -> {
-            filteredDataProvider.setFilter(e.getValue());
-        });
-        add(searchField);
+        // TODO: add search field
 
-        // add person form
-        PersonForm personForm = new PersonForm();
-        add(personForm);
+        // TODO: add person form
 
-        // add Save button
-        Button saveButton = new Button("Create");
-        add(saveButton);
+        // TODO: add Save button
 
-        // add grid
-        Grid<Person> grid = new Grid<>(Person.class);
-        grid.setDataProvider(filteredDataProvider);
-        grid.setColumns("id", "firstName", "lastName", "age", "email");
-        add(grid);
+        // TODO: add grid
 
-        // create form binder (standard and validating)
-        Binder<Person> binder = new BeanValidationBinder<>(Person.class);
-        binder.bindInstanceFields(personForm);
+        // TODO: create form binder (standard and validating), and bind person form
 
-        // load selected grid item into form
-        grid.addSelectionListener(e -> {
-            binder.setBean(e.getFirstSelectedItem().orElse(null));
-            saveButton.setText(e.getFirstSelectedItem().isEmpty() ? "Create" : "Update");
-        });
+        // TODO: load selected grid item into form, update save button label to "Create" / "Update"
 
-        // persist form on save
-        saveButton.addClickListener(e -> {
-            Person entity = grid.getSelectedItems().stream().findFirst().orElse(new Person());
-            binder.writeBeanIfValid(entity);
-            personService.save(entity);
-            filteredDataProvider.refreshAll();
-        });
+        // TODO: persist form on save, use new Person() for Create, existing entity for Update, write bean only if valid
 
-        // add delete column
-        grid.addComponentColumn((Person person) -> {
-            Button deleteButton = new Button(VaadinIcon.TRASH.create());
-            deleteButton.addClickListener(e -> {
-                personService.delete(person);
-                if (person.equals(binder.getBean())) {
-                    binder.setBean(null);
-                }
-                filteredDataProvider.refreshAll();
-            });
-            return deleteButton;
-        }).setKey("delete");
+        // TODO: add delete column, clear person form after delete if entity has been selected, set column key
 
-        // adjust columns width to fit content
-        grid.getColumnByKey("id").setFlexGrow(0);
-        grid.getColumnByKey("age").setFlexGrow(0);
-        grid.getColumnByKey("delete").setFlexGrow(0);
+        // TODO: adjust columns width to fit content (by keys)
     }
 
 }

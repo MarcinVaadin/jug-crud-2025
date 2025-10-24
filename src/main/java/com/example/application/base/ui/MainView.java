@@ -1,20 +1,14 @@
 package com.example.application.base.ui;
 
-import com.vaadin.flow.component.html.H1;
-import com.vaadin.flow.component.html.Paragraph;
-import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.router.Menu;
-import com.vaadin.flow.router.Route;
-import jakarta.annotation.security.PermitAll;
+// TODO: Register as view route
 
-@Route
-@Menu(title = "Home", icon = "vaadin:home")
-@PermitAll
-public class MainView extends VerticalLayout {
+// TODO: Add to menu with vaadin:home icon
+
+// TODO: Allow all logged in users to access
+public class MainView { // TODO: Convert it to component
 
     public MainView() {
-        add(new H1("Hello Toruń!"));
-        add(new Paragraph("Lorem ipsum"));
+        // TODO: Add title and content
     }
 
 }
