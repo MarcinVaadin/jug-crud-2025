@@ -1,7 +1,8 @@
 package com.example.application.person.ui;
 
+import com.example.application.person.data.Person;
 import com.example.application.person.data.PersonDataProvider;
-import com.example.application.person.data.PersonService;
+import org.springframework.data.repository.CrudRepository;
 
 // TODO: register as view route
 
@@ -12,7 +13,7 @@ import com.example.application.person.data.PersonService;
 public class PersonListView { // TODO: make component from class
 
     // Autowired service and data provider
-    public PersonListView(PersonService personService, PersonDataProvider personDataProvider) {
+    public PersonListView(CrudRepository<Person, String> personCrudRepository, PersonDataProvider personDataProvider) {
 
         // TODO: set view title in h2
 
