@@ -4,8 +4,6 @@ This project has been created to show fundamentals of Vaadin at JUG meetings.
 
 This demo contains descriptive code comments and follows [this slides](https://docs.google.com/presentation/d/1XBjPcaA7LXd1co0XaXfMG-3cg9pgyFRFyZ6wvbvbd-E/edit?usp=sharing).
 
-Please have in mind that this project contains a lot of simplifications and does not follow best coding patterns for sake of demo time limit.
-
 # Hello Vaadin README
 
 - [ ] TODO Replace or update this README with instructions relevant to your application
