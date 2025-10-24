@@ -1,11 +1,10 @@
-package com.example.application.data;
+package com.example.application.person.data;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.SequenceGenerator;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
@@ -13,10 +12,7 @@ import jakarta.validation.constraints.Size;
 public class Person {
 
     @Id
-    // Demo is using data with hardcoded IDs, let's use higher
-    // initial value not to have conflicts
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "order_seq")
-    @SequenceGenerator(name = "order_seq", initialValue = 1000, allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(name = "first_name")

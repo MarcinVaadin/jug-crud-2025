@@ -1,6 +1,5 @@
-package com.example.application.data;
+package com.example.application.person.data;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,7 +9,7 @@ public class PersonService {
 
     private final PersonRepository personRepository;
 
-    public PersonService(@Autowired PersonRepository personRepository) {
+    public PersonService(PersonRepository personRepository) {
         this.personRepository = personRepository;
     }
 
@@ -20,6 +19,10 @@ public class PersonService {
 
     public Person save(Person person) {
         return personRepository.save(person);
+    }
+
+    public void delete(Person person) {
+        personRepository.delete(person);
     }
 
 }
