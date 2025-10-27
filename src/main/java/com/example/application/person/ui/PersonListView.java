@@ -13,7 +13,7 @@ import org.springframework.data.repository.CrudRepository;
 public class PersonListView { // TODO: make component from class
 
     // Autowired service and data provider
-    public PersonListView(CrudRepository<Person, String> personCrudRepository, PersonDataProvider personDataProvider) {
+    public PersonListView(CrudRepository<Person, Long> personCrudRepository, PersonDataProvider personDataProvider) {
 
         // TODO: set view title in h2
 
