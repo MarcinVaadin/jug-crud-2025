@@ -2,7 +2,7 @@ package com.example.application.person.ui;
 
 import com.example.application.person.data.Person;
 import com.example.application.person.data.PersonDataProvider;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 // TODO: register as view route
 
@@ -13,7 +13,7 @@ import org.springframework.data.repository.CrudRepository;
 public class PersonListView { // TODO: make component from class
 
     // Autowired service and data provider
-    public PersonListView(CrudRepository<Person, Long> personCrudRepository, PersonDataProvider personDataProvider) {
+    public PersonListView(JpaRepository<Person, Long> repository, PersonDataProvider dataProvider) {
 
         // TODO: set view title in h2
 
