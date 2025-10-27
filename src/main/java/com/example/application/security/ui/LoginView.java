@@ -12,8 +12,9 @@ import com.vaadin.flow.server.auth.AnonymousAllowed;
  * View with login form that will be used as entry point for non-authenticated users.
  * If main layout is accessible, will render it.
  */
-@Route("login")
-@AnonymousAllowed
+// TODO: Uncomment after enabling security
+//@Route("login")
+//@AnonymousAllowed
 public class LoginView extends VerticalLayout implements BeforeEnterObserver {
 
     private final LoginForm login = new LoginForm();
